@@ -23,3 +23,5 @@ cover_db*
 *.gcno
 *.gcov
 *.stackdump
+extlib/
+
