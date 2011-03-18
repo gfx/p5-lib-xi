@@ -49,7 +49,7 @@ sub import {
     my @libs;
 
     if($install_dir) {
-            @libs = (
+        @libs = (
             "$install_dir/lib/perl5",
             "$install_dir/lib/perl5/$Config::Config{archname}",
         );
@@ -59,7 +59,7 @@ sub import {
         unshift @cpanm_opts, '-l', $install_dir;
     }
 
-    push @INC, __PACKAGE__->new(
+    push @INC, $class->new(
         install_dir => $install_dir,
         libs        => \@libs,
         cpanm_opts  => \@cpanm_opts,
