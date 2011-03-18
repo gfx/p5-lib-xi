@@ -1,9 +1,5 @@
 .shipit
 Changes
-extlib/lib/perl5/i686-linux-thread-multi/auto/install/.packlist
-extlib/lib/perl5/i686-linux-thread-multi/perllocal.pod
-extlib/lib/perl5/install.pm
-extlib/man/man3/install.3
 inc/Module/Install.pm
 inc/Module/Install/AuthorTests.pm
 inc/Module/Install/Base.pm
@@ -11,7 +7,6 @@ inc/Module/Install/Makefile.pm
 inc/Module/Install/Metadata.pm
 inc/Module/Install/Repository.pm
 inc/Module/Install/WriteAll.pm
-lib/lib/.xi.pm.swp
 lib/lib/xi.pm
 Makefile.PL
 MANIFEST			This list of files
@@ -19,8 +14,6 @@ MANIFEST.SKIP
 META.yml
 README
 t/000_load.t
-t/001_basic.t
 xt/perlcritic.t
 xt/pod.t
-xt/podcoverage.t
 xt/podspell.t
