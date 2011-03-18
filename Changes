@@ -1,5 +1,8 @@
 Revision history for Perl extension lib::xi
 
-0.01 <<SET RELEASE DATE HERE>>
-    - original version; created by /home/gfx/perl5/perlbrew/perls/perl-5.12.2/bin/dim
+0.02 2011-03-18 21:09:31
+    - Fix the case where $install_dir is omitted
+
+0.01 2011-03-18 11:09:14 
+    - original version; created by dim
       at Fri Mar 18 10:52:22 2011.
