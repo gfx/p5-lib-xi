@@ -72,7 +72,7 @@ __END__
 
 =head1 NAME
 
-lib::xi - Perl extention to do something
+lib::xi - Installs missing modules on demand
 
 =head1 VERSION
 
@@ -91,11 +91,31 @@ This document describes lib::xi version 0.01.
 
 =head1 DESCRIPTION
 
-# TODO
+When you execute a script found in, for example, C<gist>, you'll be annoyed
+at missing libraries and will install those libraries by hand with a CPAN
+client. We have repeated such a task but it violates the great virtue of
+Laziness.
+
+C<lib::xi> is a pragma to install missing libraries if and only if they are
+required.
+
+The mechanism is that if perl interpreter cannot find the library to be loaded,
+this pragma try to install it with C<cpanm> and tell it to the interpreter.
 
 =head1 INTERFACE
 
-# TODO
+=head2 The import method
+
+=head3 C<< use lib::xi ?$install_dir, ?@cpanm_opts >>
+
+Setups the C<lib::xi> hook into C<@INC>.
+
+If C<$install_dir> is specified, it is used as the install directory as
+C<cpanm -l $install_dir>.
+
+If the first argument starts C<->, it is regarded as C<@cpanm_opts>.
+
+See C<perldoc -f require> for the C<@INC> hook specification details.
 
 =head1 DEPENDENCIES
 
@@ -109,7 +129,7 @@ to cpan-RT.
 
 =head1 SEE ALSO
 
-L<Dist::Maker::Template::Default>
+L<cpanm> (App::cpanminus)
 
 =head1 AUTHOR
 
