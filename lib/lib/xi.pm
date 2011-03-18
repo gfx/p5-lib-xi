@@ -86,6 +86,9 @@ This document describes lib::xi version 0.01.
     # to install missing libaries to extlib/ (with cpanm -l extlib)
     $ perl -Mlib::xi=extlib script.pl
 
+    # extlib with cpanm options
+    $ perl -Mlib::xi=extlib,-q script.pl
+
     # with cpanm options
     $ perl -Mlib::xi=-L,extlib,-q script.pl
 
@@ -111,7 +114,7 @@ this pragma try to install it with C<cpanm> and tell it to the interpreter.
 Setups the C<lib::xi> hook into C<@INC>.
 
 If C<$install_dir> is specified, it is used as the install directory as
-C<cpanm -l $install_dir>.
+C<cpanm --loca-lib $install_dir>.
 
 If the first argument starts C<->, it is regarded as C<@cpanm_opts>.
 
