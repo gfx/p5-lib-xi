@@ -7,6 +7,7 @@ use File::Path qw(rmtree);
 # preload libs dynamically loaded
 use Cwd      ();
 use overload ();
+use Scalar::Util ();
 
 BEGIN { rmtree 'xt-extlib'; @INC = () }
 END   { rmtree 'xt-extlib';  }
