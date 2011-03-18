@@ -10,7 +10,8 @@ use Config      ();
 use File::Which ();
 use File::Spec  ();
 
-our $CPANM_PATH = File::Which::which('cpanm');
+our $CPANM_PATH = File::Which::which('cpanm')
+    || die '[lib::ex] cpanm is not available';
 
 use constant _VERBOSE => ! ! $ENV{PERL_LIBXI_VERBOSE};
 
