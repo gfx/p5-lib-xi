@@ -2,7 +2,7 @@ package lib::xi;
 use 5.008_001;
 use strict;
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 use Config ();
 
@@ -84,7 +84,7 @@ lib::xi - Installs missing modules on demand
 
 =head1 VERSION
 
-This document describes lib::xi version 0.03.
+This document describes lib::xi version 0.04.
 
 =head1 SYNOPSIS
 
