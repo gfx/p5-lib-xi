@@ -110,7 +110,7 @@ C<lib::xi> is a pragma to install missing libraries if and only if they are
 required.
 
 The mechanism is that when the perl interpreter cannot find a library required,
-this pragma try to install it with C<cpanm> and tell it to the interpreter.
+this pragma try to install it with C<cpanm(1)> and tell it to the interpreter.
 
 =head1 INTERFACE
 
@@ -120,11 +120,13 @@ this pragma try to install it with C<cpanm> and tell it to the interpreter.
 
 Setups the C<lib::xi> hook into C<@INC>.
 
-If C<$install_dir> is specified, it is used as the install directory as
+If I<$install_dir> is specified, it is used as the install directory as
 C<cpanm --local-lib $install_dir>, adding C<$install_dir/lib/perl5> to C<@INC>
 (i.e. C<use lib::xi 'extlib'> also means C<use lib 'extlib/lib/perl5'>).
 
-If the first argument starts C<->, it is regarded as C<@cpanm_opts>.
+If the first argument starts with C<->, it is regarded as C<@cpanm_opts>.
+
+I<@cpanm_opts> are passed to C<cpanm(1)>.
 
 See L<perlfunc/require> for the C<@INC> hook specification details.
 
