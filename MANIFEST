@@ -14,6 +14,5 @@ MANIFEST.SKIP
 META.yml
 README
 t/000_load.t
-xt/perlcritic.t
 xt/pod.t
 xt/podspell.t
