@@ -91,7 +91,7 @@ This document describes lib::xi version 0.05.
     $ perl -Mlib::xi script.pl
 
     # with cpanm's options
-    $ perl -Mlib::xi,-q script.pl
+    $ perl -Mlib::xi=-q script.pl
 
     # to install missing libaries to extlib/ (with cpanm -l extlib)
     $ perl -Mlib::xi=extlib script.pl
