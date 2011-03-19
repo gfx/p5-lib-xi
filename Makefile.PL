@@ -20,6 +20,12 @@ BEGIN {
         print $_, "\n" for @not_available;
         exit 1;
      }
+
+     () = `$^X -S cpanm --version`;
+     if($? != 0) {
+         print qq{cpanm(1) is not available.\n};
+         exit;
+     }
 }
 use inc::Module::Install;
 
@@ -34,7 +40,6 @@ auto_set_repository;
 
 tests_recursive;
 author_tests 'xt';
-
 
 clean_files qw(
     lib-xi-*
