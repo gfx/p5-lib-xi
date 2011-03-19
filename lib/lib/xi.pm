@@ -90,7 +90,7 @@ This document describes lib::xi version 0.05.
     # to install missing libaries automatically
     $ perl -Mlib::xi script.pl
 
-    # with cpanm's options
+    # with cpanm options
     $ perl -Mlib::xi=-q script.pl
 
     # to install missing libaries to extlib/ (with cpanm -l extlib)
