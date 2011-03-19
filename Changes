@@ -1,5 +1,9 @@
 Revision history for Perl extension lib::xi
 
+0.05 2011-03-19 15:15:12
+    - Disable some lazy loading
+    - Improve docs
+
 0.04 2011-03-19 13:59:34
     - Make loading time short by lazy loading
 
