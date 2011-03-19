@@ -11,7 +11,8 @@ use Config      ();
 sub cpanm_path {
     my($self) = @_;
     $self->{cpanm_path} ||= File::Which::which('cpanm')
-                            || $self->fatal('cpanm is not available');
+                            || die( '[' . ref($self) . ']'
+                                  . 'cpanm(1) is not available');
 }
 
 sub new {
@@ -19,12 +20,11 @@ sub new {
     return bless \%args, $class;
 }
 
-# must be fully-qualified; othewise implied ::INC.
+# must be fully-qualified; othewise implied main::INC.
 sub lib::xi::INC {
     my($self, $file) = @_;
 
-    my @args = (@{ $self->{cpanm_opts} }, $file);
-    if(system($^X, $self->cpanm_path, @args) == 0) {
+    if(system($^X, $self->cpanm_path, @{ $self->{cpanm_opts} }, $file) == 0) {
         foreach my $lib (@{ $self->{myinc} }) {
             if(open my $inh, '<', "$lib/$file") {
                 $INC{$file} = "$lib/$file";
@@ -33,6 +33,7 @@ sub lib::xi::INC {
         }
     }
 
+    # fall back to the normal error (Can't locate Foo.pm ...)
     return;
 }
 
@@ -64,13 +65,6 @@ sub import {
         cpanm_opts  => \@cpanm_opts,
     );
     return;
-}
-
-sub fatal {
-    my($self, @messages) = @_;
-    require Carp;
-    my $class = ref($self) || $self;
-    Carp::croak("[$class] ", @messages);
 }
 
 1;
