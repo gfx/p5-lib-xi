@@ -104,13 +104,13 @@ This document describes lib::xi version 0.04.
 
 When you execute a script found in, for example, C<gist>, you'll be annoyed
 at missing libraries and will install those libraries by hand with a CPAN
-client. We have repeated such a task but it violates the great virtue of
-Laziness.
+client. We have repeated such a task, which violates the great virtue of
+Laziness. Stop doing it! Make computors do it!
 
 C<lib::xi> is a pragma to install missing libraries if and only if they are
 required.
 
-The mechanism is that if perl interpreter cannot find the library to be loaded,
+The mechanism is that when the perl interpreter cannot find a library required,
 this pragma try to install it with C<cpanm> and tell it to the interpreter.
 
 =head1 INTERFACE
@@ -126,7 +126,7 @@ C<cpanm --loca-lib $install_dir>.
 
 If the first argument starts C<->, it is regarded as C<@cpanm_opts>.
 
-See C<perldoc -f require> for the C<@INC> hook specification details.
+See L<perlfunc/require> for the C<@INC> hook specification details.
 
 =head1 DEPENDENCIES
 
