@@ -1,19 +1,19 @@
 package lib::xi;
 use 5.008_001;
 use strict;
-use warnings;
 
 our $VERSION = '0.03';
 
-use Carp        ();
-use Config      ();
-use File::Which ();
-use File::Spec  ();
+use Config ();
 
-our $CPANM_PATH = File::Which::which('cpanm')
-    || die '[lib::ex] cpanm is not available';
-
-use constant _VERBOSE => ! ! $ENV{PERL_LIBXI_VERBOSE};
+sub cpanm_path {
+    my($self) = @_;
+    $self->{cpanm_path} ||= do {
+        require File::Which;
+        File::Which::which('cpanm')
+                            || $self->fatal('cpanm is not available');
+    };
+}
 
 sub new {
     my($class, %args) = @_;
@@ -25,9 +25,8 @@ sub lib::xi::INC {
     my($self, $file) = @_;
 
     my @args = (@{ $self->{cpanm_opts} }, $file);
-    print STDERR "[lib::xi] cpanm @args\n" if _VERBOSE;
-    system($^X, $CPANM_PATH, @args) == 0
-        or Carp::croak("[lib::xi] Failed to exec `cpanm @args`");
+    system($^X, $self->cpanm_path, @args) == 0
+        or $self->fatal("Failed to exec `cpanm @args`");
 
     foreach my $lib (@{ $self->{myinc} }) {
         if(open my $inh, '<', "$lib/$file") {
@@ -36,7 +35,7 @@ sub lib::xi::INC {
         }
     }
 
-    Carp::croak("[lib::xi] Try to install $file via `cpanm @args` but failed");
+    $self->fatal("Try to install $file via `cpanm @args` but failed");
 }
 
 sub import {
@@ -45,6 +44,7 @@ sub import {
     my $install_dir;
 
     if(@cpanm_opts && $cpanm_opts[0] !~ /^-/) {
+        require File::Spec;
         $install_dir = File::Spec->rel2abs(shift @cpanm_opts);
     }
 
@@ -56,11 +56,9 @@ sub import {
             "$install_dir/lib/perl5/$Config::Config{archname}",
         );
         push @INC, @myinc;
-        print STDERR "[lib::xi] add [@myinc] to \@INC\n" if _VERBOSE;
 
         unshift @cpanm_opts, '-l', $install_dir;
     }
-
 
     push @INC, $class->new(
         install_dir => $install_dir,
@@ -69,6 +67,14 @@ sub import {
     );
     return;
 }
+
+sub fatal {
+    my($self, @messages) = @_;
+    require Carp;
+    my $class = ref($self) || $self;
+    Carp::croak("[$class] ", @messages);
+}
+
 1;
 __END__
 
