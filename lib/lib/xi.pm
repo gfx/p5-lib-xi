@@ -24,17 +24,16 @@ sub lib::xi::INC {
     my($self, $file) = @_;
 
     my @args = (@{ $self->{cpanm_opts} }, $file);
-    system($^X, $self->cpanm_path, @args) == 0
-        or $self->fatal("Failed to exec `cpanm @args`");
-
-    foreach my $lib (@{ $self->{myinc} }) {
-        if(open my $inh, '<', "$lib/$file") {
-            $INC{$file} = "$lib/$file";
-            return $inh;
+    if(system($^X, $self->cpanm_path, @args) == 0) {
+        foreach my $lib (@{ $self->{myinc} }) {
+            if(open my $inh, '<', "$lib/$file") {
+                $INC{$file} = "$lib/$file";
+                return $inh;
+            }
         }
     }
 
-    $self->fatal("Try to install $file via `cpanm @args` but failed");
+    return;
 }
 
 sub import {
