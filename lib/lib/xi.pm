@@ -72,6 +72,8 @@ sub import {
     return;
 }
 
+sub install_dir { $_[0]->{install_dir} } # for testing
+
 1;
 __END__
 
@@ -122,6 +124,8 @@ Setups the C<lib::xi> hook into C<@INC>.
 If I<$install_dir> is specified, it is used as the install directory as
 C<cpanm --local-lib $install_dir>, adding C<$install_dir/lib/perl5> to C<@INC>
 (i.e. C<use lib::xi 'extlib'> also means C<use lib 'extlib/lib/perl5'>).
+Note that I<$install_dir> will be expanded to the absolute path based on
+where the script is.
 
 If the first argument starts with C<->, it is regarded as C<@cpanm_opts>.
 
