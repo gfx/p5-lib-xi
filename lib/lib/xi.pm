@@ -97,13 +97,14 @@ This document describes lib::xi version 0.07.
 When you execute a script found in, for example, C<gist>, you'll be annoyed
 at missing libraries and will install those libraries by hand with a CPAN
 client. We have repeated such a task, which violates the great virtue of
-Laziness. Stop doing it! Make computers do it!
+Laziness. Stop doing it, making computers do it!
 
-C<lib::xi> is a pragma to install missing libraries if and only if they are
-required.
+C<lib::xi> is a pragma to install missing libraries automatically if and only
+if they are required.
 
-The mechanism is that when the perl interpreter cannot find a library required,
-this pragma try to install it with C<cpanm(1)> and tell it to the interpreter.
+The mechanism, using C<< @INC hook >>, is that when the perl interpreter cannot
+find a library required, this pragma try to install it with C<cpanm(1)> and
+tell it to the interpreter.
 
 =head1 INTERFACE
 
@@ -119,9 +120,7 @@ C<cpanm --local-lib $install_dir>, adding C<$install_dir/lib/perl5> to C<@INC>
 
 If the first argument starts with C<->, it is regarded as C<@cpanm_opts>.
 
-I<@cpanm_opts> are passed to C<cpanm(1)>.
-
-See L<perlfunc/require> for the C<@INC> hook specification details.
+I<@cpanm_opts> are passed directly to C<cpanm(1)>.
 
 =head1 DEPENDENCIES
 
@@ -136,6 +135,10 @@ to cpan-RT.
 =head1 SEE ALSO
 
 L<cpanm> (App::cpanminus)
+
+L<perlfunc/require> for the C<@INC> hook specification details
+
+L<CPAN::AutoInc>
 
 =head1 AUTHOR
 
