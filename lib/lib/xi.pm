@@ -122,6 +122,13 @@ If the first argument starts with C<->, it is regarded as C<@cpanm_opts>.
 
 I<@cpanm_opts> are passed directly to C<cpanm(1)>.
 
+=head1 COMPARISON
+
+There are similar modules to C<lib::xi>, namely C<CPAN::AutoINC> and
+C<Module::AutoINC>, which use C<CPAN.pm> to install modules; the difference
+is that C<lib::xi> supports C<local::lib> (via C<cpanm -l>) and has little
+overhad.
+
 =head1 DEPENDENCIES
 
 Perl 5.8.1 or later.
@@ -138,7 +145,9 @@ L<cpanm> (App::cpanminus)
 
 L<perlfunc/require> for the C<@INC> hook specification details
 
-L<CPAN::AutoInc>
+L<CPAN::AutoINC>
+
+L<Module::AutoINC>
 
 =head1 AUTHOR
 
