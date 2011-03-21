@@ -51,10 +51,10 @@ sub import {
 
     if($install_dir) {
         @myinc = (
-            "$install_dir/lib/perl5",
             "$install_dir/lib/perl5/$Config::Config{archname}",
+            "$install_dir/lib/perl5",
         );
-        push @INC, @myinc;
+        unshift @INC, @myinc;
 
         unshift @cpanm_opts, '-l', $install_dir;
     }
