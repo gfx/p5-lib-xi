@@ -1,5 +1,8 @@
 Revision history for Perl extension lib::xi
 
+0.08 2011-03-21 16:03:45
+    - Make $install_dir absolute based on where the script is
+
 0.07 2011-03-21 11:30:18
     - Fix the order of $install_dir in @INC
     - Fix dependencies
