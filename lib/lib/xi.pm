@@ -44,7 +44,12 @@ sub import {
 
     if(@cpanm_opts && $cpanm_opts[0] !~ /^-/) {
         require File::Spec;
-        $install_dir = File::Spec->rel2abs(shift @cpanm_opts);
+        my $base;
+        if($0 ne '-e' && -e $0) {
+            my($volume, $dir, undef) = File::Spec->splitpath($0);
+            $base = File::Spec->catpath($volume, $dir, '');
+        }
+        $install_dir = File::Spec->rel2abs(shift(@cpanm_opts), $base);
     }
 
     my @myinc;
@@ -127,7 +132,7 @@ I<@cpanm_opts> are passed directly to C<cpanm(1)>.
 There are similar modules to C<lib::xi>, namely C<CPAN::AutoINC> and
 C<Module::AutoINC>, which use C<CPAN.pm> to install modules; the difference
 is that C<lib::xi> supports C<local::lib> (via C<cpanm -l>) and has little
-overhad.
+overhead.
 
 =head1 DEPENDENCIES
 
