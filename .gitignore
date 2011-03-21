@@ -24,4 +24,5 @@ cover_db*
 *.gcov
 *.stackdump
 extlib/
+example/extlib
 
