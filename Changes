@@ -1,5 +1,8 @@
 Revision history for Perl extension lib::xi
 
+0.09 2011-03-23 09:55:03
+    - Not to depend on File::Which
+
 0.08 2011-03-21 16:03:45
     - Make $install_dir absolute based on where the script is
 
