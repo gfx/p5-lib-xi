@@ -31,7 +31,6 @@ use inc::Module::Install;
 all_from 'lib/lib/xi.pm';
 
 requires 'App::cpanminus';
-requires 'File::Which';
 
 test_requires 'Test::More' => '0.88';
 
