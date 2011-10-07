@@ -25,4 +25,4 @@ cover_db*
 *.stackdump
 extlib/
 example/extlib
-
+*~

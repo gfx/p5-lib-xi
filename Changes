@@ -1,5 +1,8 @@
 Revision history for Perl extension lib::xi
 
+0.10 2011-10-07 10:12:55
+    - Ignore some non-CPAN modules by default
+
 0.09 2011-03-23 09:55:03
     - Not to depend on File::Which
 
