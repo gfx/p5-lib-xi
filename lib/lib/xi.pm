@@ -3,7 +3,7 @@ use 5.008_001;
 use strict;
 use warnings FATAL => 'all';
 
-our $VERSION = '0.11';
+our $VERSION = '0.12';
 
 use Config ();
 
@@ -31,7 +31,10 @@ sub lib::xi::INC {
 
     return if $IGNORE{$file};
 
-    my @cmd = ($^X, '-S', $self->cpanm_command, $file);
+    my $module = $file;
+    $module =~ s/\.pm \z//xms;
+    $module =~ s{/}{::}xmsg;
+    my @cmd = ($^X, '-S', $self->cpanm_command, $module);
     if($VERBOSE) {
         print STDERR "# PERL_CPANM_OPT: ", ($ENV{PERL_CPANM_OPT} || '') ,"\n";
         print STDERR "# COMMAND: @cmd\n";
@@ -97,7 +100,7 @@ lib::xi - Installs missing modules on demand
 
 =head1 VERSION
 
-This document describes lib::xi version 0.11.
+This document describes lib::xi version 0.12.
 
 =head1 SYNOPSIS
 
