@@ -7,6 +7,8 @@ our $VERSION = '0.10';
 
 use Config ();
 
+our $VERBOSE;
+
 # modules which dosn't exist in CPAN
 our %IGNORE = map { $_ => 1 } (
     'Encode/ConfigLocal.pm',
@@ -29,7 +31,12 @@ sub lib::xi::INC {
 
     return if $IGNORE{$file};
 
-    if(system($^X, '-S', $self->cpanm_command, $file) == 0) {
+    my @cmd = ($^X, '-S', $self->cpanm_command, $file);
+    if($VERBOSE) {
+        print STDERR "# PERL_CPANM_OPT: ", ($ENV{PERL_CPANM_OPT} || '') ,"\n";
+        print STDERR "# COMMAND: @cmd\n";
+    }
+    if(system(@cmd) == 0) {
         foreach my $lib (@{ $self->{myinc} }) {
             if(open my $inh, '<', "$lib/$file") {
                 $INC{$file} = "$lib/$file";
@@ -68,6 +75,8 @@ sub import {
 
         unshift @cpanm_opts, '-l', $install_dir;
     }
+
+    $VERBOSE = scalar grep { $_ eq '-v' } @cpanm_opts;
 
     push @INC, $class->new(
         install_dir => $install_dir,
