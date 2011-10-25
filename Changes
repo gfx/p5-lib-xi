@@ -1,5 +1,8 @@
 Revision history for Perl extension lib::xi
 
+0.11 2011-10-25 17:15:54
+    - Add verbose mode enabled by -v
+
 0.10 2011-10-07 10:12:55
     - Ignore some non-CPAN modules by default
 
