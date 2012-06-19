@@ -13,6 +13,7 @@ our $VERBOSE;
 our %IGNORE = map { $_ => 1 } (
     'Encode/ConfigLocal.pm',
     'Devel/StackTraceFrame.pm',
+    'Log/Agent.pm', # used in Storable.pm
 );
 
 sub new {

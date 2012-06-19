@@ -17,11 +17,11 @@ BEGIN { rmtree(INSTALL_DIR);  }
 END   { rmtree(INSTALL_DIR);  }
 
 use install; # a dummy module
-use Scalar::Alias;
+use JSON::XS;
 
 like $INC{'install.pm'}, qr/\Qinstall.pm\E \z/xms, 'collectly installed';
 
-ok( Scalar::Alias->VERSION, 'XS module');
+ok( JSON::XS->VERSION, 'XS module');
 
 done_testing;
 

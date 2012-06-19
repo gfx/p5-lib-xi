@@ -10,8 +10,8 @@ lib-xi-*
 Makefile*
 !Makefile.PL
 *blib
-META.yml
-MYMETA.yml
+META.*
+MYMETA.*
 inc/
 *.out
 *.bak
