@@ -1,5 +1,9 @@
 Revision history for Perl extension lib::xi
 
+0.13 2012-10-20 21:04:29
+    - ignore Log::Agent, used in Storable
+    - Upgraded Module::Install.
+
 0.12 2011-10-25 17:28:16
     - Give a module name to cpanm, not a file name
 
