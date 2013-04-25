@@ -21,6 +21,21 @@ sub new {
     return bless \%args, $class;
 }
 
+sub run_perl {
+    my(@args) = @_;
+
+    my %std_inc = map  { $_ => 1 }
+                  grep { length } @Config::Config{qw(
+          sitelibexp   sitearchexp
+        venderlibexp venderarchexp
+          privlibexp    archlibexp
+    )};
+    my @non_std_inc = map { File::Spec->rel2abs($_) }
+                      grep { not $std_inc{$_} } @INC;
+
+    system($^X, (map { "-I$_" } @non_std_inc), @args);
+}
+
 sub cpanm_command {
     my($self) = @_;
     return('cpanm', @{ $self->{cpanm_opts} });
@@ -35,12 +50,13 @@ sub lib::xi::INC {
     my $module = $file;
     $module =~ s/\.pm \z//xms;
     $module =~ s{/}{::}xmsg;
-    my @cmd = ($^X, '-S', $self->cpanm_command, $module);
+
+    my @cmd = ($self->cpanm_command, $module);
     if($VERBOSE) {
         print STDERR "# PERL_CPANM_OPT: ", ($ENV{PERL_CPANM_OPT} || '') ,"\n";
         print STDERR "# COMMAND: @cmd\n";
     }
-    if(system(@cmd) == 0) {
+    if(run_perl('-S', @cmd) == 0) {
         foreach my $lib (@{ $self->{myinc} }) {
             if(open my $inh, '<', "$lib/$file") {
                 $INC{$file} = "$lib/$file";
