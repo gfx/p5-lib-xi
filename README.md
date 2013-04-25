@@ -4,7 +4,7 @@ lib::xi - Installs missing modules on demand
 
 # VERSION
 
-This document describes lib::xi version 0.13.
+This document describes lib::xi version 1.00.
 
 # SYNOPSIS
 
