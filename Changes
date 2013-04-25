@@ -1,5 +1,7 @@
 Revision history for Perl extension lib::xi
 
+{{$NEXT}}
+
 0.13 2012-10-20 21:04:29
     - ignore Log::Agent, used in Storable
     - Upgraded Module::Install.

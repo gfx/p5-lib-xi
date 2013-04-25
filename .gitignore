@@ -26,3 +26,10 @@ cover_db*
 extlib/
 example/extlib
 *~
+/lib-xi-*
+/.build
+/_build_params
+/Build
+!Build/
+!META.json
+!LICENSE
