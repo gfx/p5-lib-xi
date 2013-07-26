@@ -2,6 +2,9 @@ Revision history for Perl extension lib::xi
 
 {{$NEXT}}
 
+1.01 2013-07-26T17:11:36Z
+    - Fix an issue that File::Spec was not loaded (#1)
+
 1.00 2013-04-25T05:29:18Z
     - Use Module::Build instead of Module::Install
     - Respect @INC
