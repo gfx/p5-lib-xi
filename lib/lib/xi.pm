@@ -5,6 +5,7 @@ use warnings FATAL => 'all';
 
 our $VERSION = '1.00';
 
+use File::Spec ();
 use Config ();
 
 our $VERBOSE;
