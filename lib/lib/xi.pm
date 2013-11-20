@@ -3,7 +3,7 @@ use 5.008_001;
 use strict;
 use warnings FATAL => 'all';
 
-our $VERSION = '1.01';
+our $VERSION = '1.02';
 
 use File::Spec ();
 use Config ();
@@ -26,7 +26,7 @@ sub run_perl {
     my(@args) = @_;
 
     my %std_inc = map  { $_ => 1 }
-                  grep { length } @Config::Config{qw(
+                  grep { defined($_) && length } @Config::Config{qw(
           sitelibexp   sitearchexp
         venderlibexp venderarchexp
           privlibexp    archlibexp
