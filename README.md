@@ -4,7 +4,7 @@ lib::xi - Installs missing modules on demand
 
 # VERSION
 
-This document describes lib::xi version 1.02.
+This document describes lib::xi version 1.03.
 
 # SYNOPSIS
 
@@ -75,13 +75,13 @@ to cpan-RT.
 
 # SEE ALSO
 
-[cpanm](http://search.cpan.org/perldoc?cpanm) (App::cpanminus)
+[cpanm](https://metacpan.org/pod/cpanm) (App::cpanminus)
 
-["require" in perlfunc](http://search.cpan.org/perldoc?perlfunc#require) for the `@INC` hook specification details
+["require" in perlfunc](https://metacpan.org/pod/perlfunc#require) for the `@INC` hook specification details
 
-[CPAN::AutoINC](http://search.cpan.org/perldoc?CPAN::AutoINC)
+[CPAN::AutoINC](https://metacpan.org/pod/CPAN::AutoINC)
 
-[Module::AutoINC](http://search.cpan.org/perldoc?Module::AutoINC)
+[Module::AutoINC](https://metacpan.org/pod/Module::AutoINC)
 
 # AUTHOR
 

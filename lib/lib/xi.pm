@@ -3,7 +3,7 @@ use 5.008_001;
 use strict;
 use warnings FATAL => 'all';
 
-our $VERSION = '1.02';
+our $VERSION = '1.03';
 
 use File::Spec ();
 use Config ();
@@ -118,7 +118,7 @@ lib::xi - Installs missing modules on demand
 
 =head1 VERSION
 
-This document describes lib::xi version 1.02.
+This document describes lib::xi version 1.03.
 
 =head1 SYNOPSIS
 

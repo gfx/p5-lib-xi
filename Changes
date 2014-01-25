@@ -2,6 +2,9 @@ Revision history for Perl extension lib::xi
 
 {{$NEXT}}
 
+1.03 2014-01-25T02:44:40Z
+    - Fix more UUV warnings (#4)
+
 1.02 2013-11-20T11:50:29Z
     - Fix UUV warnings (#3)
 
