@@ -32,7 +32,7 @@ sub run_perl {
           privlibexp    archlibexp
     )};
     my @non_std_inc = map { File::Spec->rel2abs($_) }
-                      grep { not $std_inc{$_} } @INC;
+                      grep { defined($_) && not $std_inc{$_} } @INC;
 
     system($^X, (map { "-I$_" } @non_std_inc), @args);
 }
@@ -58,7 +58,7 @@ sub lib::xi::INC {
         print STDERR "# COMMAND: @cmd\n";
     }
     if(run_perl('-S', @cmd) == 0) {
-        foreach my $lib (@{ $self->{myinc} }) {
+        foreach my $lib (grep {defined} @{ $self->{myinc} }) {
             if(open my $inh, '<', "$lib/$file") {
                 $INC{$file} = "$lib/$file";
                 return $inh;
