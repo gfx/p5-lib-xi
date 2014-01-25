@@ -58,7 +58,7 @@ sub lib::xi::INC {
         print STDERR "# COMMAND: @cmd\n";
     }
     if(run_perl('-S', @cmd) == 0) {
-        foreach my $lib (@{ $self->{myinc} }) {
+        foreach my $lib (grep {defined} @{ $self->{myinc} }) {
             if(open my $inh, '<', "$lib/$file") {
                 $INC{$file} = "$lib/$file";
                 return $inh;
